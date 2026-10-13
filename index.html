@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Smart Job AI — job discovery, resume preparation, and interview practice.">
+<title>Smart Job AI | Career Tools</title>
+<style>
+:root{--navy:#14213d;--blue:#2563eb;--light:#f4f7fb;--ink:#172033;--muted:#65718a;--green:#0f766e}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--light);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(135deg,#14213d,#2563eb);color:white;padding:22px 6vw 54px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1100px;margin:auto}.brand{font-weight:800;font-size:1.25rem;letter-spacing:.2px}.badge{font-size:.8rem;border:1px solid #ffffff70;border-radius:99px;padding:5px 10px}
+.hero{max-width:1100px;margin:40px auto 0}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;margin:0 0 14px;max-width:720px}.hero p{max-width:680px;color:#e4ebff;font-size:1.05rem}.button{display:inline-block;border:0;border-radius:10px;padding:12px 17px;font-weight:700;cursor:pointer;text-decoration:none;background:#fff;color:var(--navy)}.button.blue{background:var(--blue);color:white}.button.outline{background:transparent;border:1px solid #b9c7e5;color:var(--navy)}
+main{max-width:1100px;margin:-25px auto 50px;padding:0 18px}.notice{background:#fff8e6;border:1px solid #f4d58a;color:#704d00;border-radius:12px;padding:13px 16px;margin-bottom:22px;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:22px;box-shadow:0 8px 24px #16213d08}.icon{font-size:1.7rem}.card h2{font-size:1.12rem;margin:8px 0}.card p{color:var(--muted);font-size:.94rem}.card button{margin-top:8px}
+section.panel{margin-top:24px;background:white;border:1px solid #e2e8f0;border-radius:16px;padding:24px}.panel h2{margin-top:0}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{display:block;font-weight:650;font-size:.9rem;margin-bottom:5px}input,textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:11px;font:inherit;background:white}textarea{min-height:105px;resize:vertical}.full{grid-column:1/-1}.output{white-space:pre-wrap;background:#f8fafc;border:1px dashed #b8c4d6;padding:15px;border-radius:10px;min-height:60px;margin-top:14px}
+.joblist{display:grid;gap:12px}.job{border:1px solid #e2e8f0;border-radius:12px;padding:14px}.job strong{display:block}.job small{color:var(--muted)}footer{max-width:1100px;margin:auto;padding:0 18px 35px;color:var(--muted);font-size:.88rem}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.grid,.fields{grid-template-columns:1fr}.hero{margin-top:28px}header{padding-bottom:48px}.card,section.panel{padding:18px}}
+</style>
+</head>
+<body>
+<header>
+  <nav><div class="brand">✨ Smart Job AI</div><span class="badge">Free starter version</span></nav>
+  <div class="hero">
+    <h1>Your next career step starts here.</h1>
+    <p>Prepare a stronger resume, practise interview answers, and explore job-search resources in one simple place.</p>
+    <a class="button" href="#tools">Explore free tools ↓</a>
+  </div>
+</header>
+<main>
+  <div class="notice"><strong>Demo version:</strong> This starter website does not connect to a real AI service, live job database, or payment provider yet. The tools below create basic text in your browser. Verify every vacancy on the employer’s official website.</div>
+  <div class="grid" id="tools">
+    <article class="card"><div class="icon">📝</div><h2>Resume Builder</h2><p>Enter your details to create a simple resume draft you can copy and edit.</p><a class="button blue" href="#resume">Build resume</a></article>
+    <article class="card"><div class="icon">🎤</div><h2>Interview Practice</h2><p>Get common practice questions for a role and prepare your own answers.</p><a class="button blue" href="#interview">Practise now</a></article>
+    <article class="card"><div class="icon">🔎</div><h2>Job Search Resources</h2><p>Open official job-search sites and verify eligibility, dates, and application fees.</p><a class="button blue" href="#jobs">Explore resources</a></article>
+  </div>
+
+  <section class="panel" id="resume">
+    <h2>📝 Resume draft generator</h2>
+    <p>Fill in your details. This runs in your browser; it does not upload them.</p>
+    <div class="fields">
+      <div><label for="name">Full name</label><input id="name" placeholder="Your name"></div>
+      <div><label for="role">Target job</label><input id="role" placeholder="e.g. MIS Executive"></div>
+      <div><label for="education">Education</label><input id="education" placeholder="e.g. B.Tech Computer Science"></div>
+      <div><label for="skills">Skills</label><input id="skills" placeholder="e.g. Excel, communication"></div>
+      <div class="full"><label for="experience">Experience / projects (optional)</label><textarea id="experience" placeholder="Mention internships, projects, or fresher status honestly."></textarea></div>
+      <div class="full"><button class="button blue" onclick="makeResume()">Create resume draft</button> <button class="button outline" onclick="copyOutput('resumeOut')">Copy draft</button></div>
+    </div>
+    <div class="output" id="resumeOut" aria-live="polite">Your resume draft will appear here.</div>
+  </section>
+
+  <section class="panel" id="interview">
+    <h2>🎤 Interview practice</h2>
+    <div class="fields">
+      <div class="full"><label for="interviewRole">Target role</label><input id="interviewRole" placeholder="e.g. Customer Support Executive"></div>
+      <div class="full"><button class="button blue" onclick="makeQuestions()">Show practice questions</button> <button class="button outline" onclick="copyOutput('interviewOut')">Copy questions</button></div>
+    </div>
+    <div class="output" id="interviewOut" aria-live="polite">Choose a role to see sample questions.</div>
+  </section>
+
+  <section class="panel" id="jobs">
+    <h2>🔎 Job search resources</h2>
+    <p>These are external resources. Smart Job AI does not currently fetch or verify live vacancies.</p>
+    <div class="joblist">
+      <div class="job"><strong>National Career Service (India)</strong><small>Government-supported career and job-search portal.</small><p><a href="https://www.ncs.gov.in/" target="_blank" rel="noopener noreferrer">Open official website ↗</a></p></div>
+      <div class="job"><strong>SSC</strong><small>Check official notices for Staff Selection Commission recruitment.</small><p><a href="https://ssc.gov.in/" target="_blank" rel="noopener noreferrer">Open official website ↗</a></p></div>
+      <div class="job"><strong>Railway Recruitment Boards</strong><small>Use official RRB websites and notices for railway recruitment.</small><p><a href="https://indianrailways.gov.in/" target="_blank" rel="noopener noreferrer">Indian Railways official website ↗</a></p></div>
+    </div>
+  </section>
+
+  <section class="panel" id="subscription">
+    <h2>⭐ Optional membership plan</h2>
+    <p><strong>₹599/month (proposed, not active)</strong></p>
+    <p>Do not collect payment until you have clearly described the service, terms, refund/cancellation policy, privacy policy, and configured an approved payment provider. No payment is taken on this demo page.</p>
+    <button class="button outline" onclick="alert('Payments are not enabled in this demo. Add an approved payment provider and explicit customer consent before launching subscriptions.')">Payment setup status</button>
+  </section>
+</main>
+<footer>© <span id="year"></span> Smart Job AI · Demo starter website · Never pay a recruiter to guarantee a job. Check vacancy details on official sources.</footer>
+<script>
+function val(id){return document.getElementById(id).value.trim();}
+function makeResume(){
+ const name=val('name')||'[Your Name]', role=val('role')||'[Target Role]', education=val('education')||'[Education]', skills=val('skills')||'[Add your real skills]', exp=val('experience')||'Fresher — add relevant academic projects or experience if applicable.';
+ document.getElementById('resumeOut').textContent =
+ `${name.toUpperCase()}\\nTarget Role: ${role}\\n\\nCAREER OBJECTIVE\\nMotivated candidate seeking an opportunity as ${role}. Eager to learn, contribute, and develop professionally.\\n\\nEDUCATION\\n${education}\\n\\nSKILLS\\n${skills}\\n\\nEXPERIENCE / PROJECTS\\n${exp}\\n\\nNote: Review and replace this template with accurate personal details before applying.`;
+}
+function makeQuestions(){
+ const role=val('interviewRole')||'your target role';
+ document.getElementById('interviewOut').textContent =
+ `Practice questions for ${role}:\\n\\n1. Tell me about yourself.\\n2. Why are you interested in this role?\\n3. What do you know about our company?\\n4. Which skills make you suitable for this job? Give a real example.\\n5. Describe a challenge you handled and what you learned.\\n6. What are your strengths and one area you are improving?\\n7. What questions would you like to ask the interviewer?\\n\\nTip: Practise concise, truthful answers. These are sample questions, not guaranteed interview questions.`;
+}
+async function copyOutput(id){
+ const text=document.getElementById(id).textContent;
+ try{await navigator.clipboard.writeText(text);alert('Copied.');}
+ catch(e){alert('Please select the text and copy it manually.');}
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

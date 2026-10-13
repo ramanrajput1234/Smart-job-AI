@@ -81,7 +81,7 @@ function val(id){return document.getElementById(id).value.trim();}
 function makeResume(){
  const name=val('name')||'[Your Name]', role=val('role')||'[Target Role]', education=val('education')||'[Education]', skills=val('skills')||'[Add your real skills]', exp=val('experience')||'Fresher — add relevant academic projects or experience if applicable.';
  document.getElementById('resumeOut').textContent =
- `${name.toUpperCase()}\\nTarget Role: ${role}\\n\\nCAREER OBJECTIVE\\nMotivated candidate seeking an opportunity as ${role}. Eager to learn, contribute, and develop professionally.\\n\\nEDUCATION\\n${education}\\n\\nSKILLS\\n${skills}\\n\\nEXPERIENCE / PROJECTS\\n${exp}\\n\\nNote: Review and replace this template with accurate personal details before applying.`;
+ `${name.toUpperCase()}\nTarget Role: ${role}\n\nCAREER OBJECTIVE\nMotivated candidate seeking an opportunity as ${role}. Eager to learn, contribute, and develop professionally.\n\nEDUCATION\n${education}\n\nSKILLS\n${skills}\n\nEXPERIENCE / PROJECTS\n${exp}\n\nNote: Review and replace this template with accurate personal details before applying.`;
 }
 function makeQuestions(){
  const role=val('interviewRole')||'your target role';
